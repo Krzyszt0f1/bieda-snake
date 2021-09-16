@@ -6,6 +6,17 @@ const ctx = canvas.getContext('2d');
 const width = canvas.width = 425;
 const height = canvas.height = 375;
 
+// function to randomly generate food position on a map
+
+function random() {
+    const xNum =  Math.floor(Math.random() * 17) * 25 + 12.5;
+    const yNum =  Math.floor(Math.random() * 15) * 25 + 12.5;
+    return {
+        xNum,
+        yNum
+    };
+}
+
 // canvas checkered pattern
 
 for (let i = 0; i < 15; i++) {
@@ -18,3 +29,9 @@ for (let i = 0; i < 15; i++) {
         ctx.fillRect(j * 25, i * 25, 25, 25);
     }
 }
+
+//trying to places a food piece on a map
+
+const foodPosition = random();
+const food = new SnakeFood(foodPosition.xNum, foodPosition.yNum, true);
+food.draw();
