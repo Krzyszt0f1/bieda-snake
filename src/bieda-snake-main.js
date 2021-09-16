@@ -17,21 +17,43 @@ function random() {
     };
 }
 
-// canvas checkered pattern
-
-for (let i = 0; i < 15; i++) {
-    for (let j = 0; j < 17; j++) {
-       if((j % 2 === 0 && i % 2 === 0) || (j % 2 === 1 && i % 2 === 1)) {
-           ctx.fillStyle = '#aad751';
-       } else {
-           ctx.fillStyle = '#a2d149';
-       }
-        ctx.fillRect(j * 25, i * 25, 25, 25);
-    }
-}
 
 //trying to places a food piece on a map
 
 const foodPosition = random();
 const food = new SnakeFood(foodPosition.xNum, foodPosition.yNum, true);
-food.draw();
+
+// define SnakeHead
+
+const snakeHead = new SnakeHead(212.5, 187.5, true);
+
+snakeHead.setControls();
+
+// define loop that keeps drawing the scene constantly
+
+function loop() {
+    // canvas checkered pattern
+
+    for (let i = 0; i < 15; i++) {
+        for (let j = 0; j < 17; j++) {
+            if((j % 2 === 0 && i % 2 === 0) || (j % 2 === 1 && i % 2 === 1)) {
+                ctx.fillStyle = '#aad751';
+            } else {
+                ctx.fillStyle = '#a2d149';
+            }
+            ctx.fillRect(j * 25, i * 25, 25, 25);
+        }
+    }
+    
+
+    // set the SnakeHead in motion
+
+    food.draw();
+    snakeHead.draw();
+    snakeHead.checkBounds();
+    snakeHead.updatePosition();
+
+    requestAnimationFrame(loop);
+}
+
+loop();
