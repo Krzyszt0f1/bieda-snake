@@ -3,7 +3,7 @@ class SnakeHead extends SnakeObject {
     constructor(x, y, exists) {
         super(x, y, exists);
         this.color = '#4977ee';
-        this.vel = 2;
+        this.vel = 2.5;
         this.direction = 'right';
     };
 
@@ -16,19 +16,25 @@ class SnakeHead extends SnakeObject {
 
     checkBounds() {
         if((this.x + this.size) > width) {
-            this.x = width - this.size;
+            this.x = width - 2 * this.size;
+            return false;
         }
 
         if((this.x - this.size) < 0) {
-            this.x = this.size;
+            this.x =  2 * this.size;
+            return false;
         }
 
         if((this.y + this.size) > height) {
-            this.y = height - this.size;
+            this.y = height - 2 * this.size;
+            return false;
         }
 
         if((this.y - this.size) < 0) {
-            this.y = this.size;
+            this.y = 2 * this.size;
+            return false;
+        } else {
+            return true;
         }
     };
     

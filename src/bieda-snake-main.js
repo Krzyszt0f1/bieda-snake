@@ -50,10 +50,11 @@ function loop() {
 
     food.draw();
     snakeHead.draw();
-    snakeHead.checkBounds();
-    snakeHead.updatePosition();
+    if(snakeHead.checkBounds()){
+        snakeHead.updatePosition();
 
-    requestAnimationFrame(loop);
+        requestAnimationFrame(loop);
+    }
 }
 
 loop();
