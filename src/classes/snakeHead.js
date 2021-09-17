@@ -53,13 +53,13 @@ class SnakeHead extends SnakeObject {
     setControls() {
         let _this = this;
         window.onkeydown = function(e) {
-            if (e.key === 'a') {
+            if (e.key === 'a' && _this.direction !== 'right') {
                 _this.direction = 'left';
-            } else if (e.key === 'd') {
+            } else if (e.key === 'd' && _this.direction !== 'left') {
                 _this.direction = 'right';
-            } else if (e.key === 'w') {
+            } else if (e.key === 'w' && _this.direction !== 'down') {
                 _this.direction = 'up';
-            } else if (e.key === 's') {
+            } else if (e.key === 's' && _this.direction !== 'up') {
                 _this.direction = 'down';
             }
         }
