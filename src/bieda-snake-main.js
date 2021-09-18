@@ -9,8 +9,8 @@ const height = canvas.height = 300;
 // function to randomly generate food position on a map
 
 function random() {
-    const xNum =  Math.floor(Math.random() * 17) * 20 + 10;
-    const yNum =  Math.floor(Math.random() * 15) * 20 + 10;
+    const xNum =  Math.floor(Math.random() * 17) * 20;
+    const yNum =  Math.floor(Math.random() * 15) * 20;
     return {
         xNum,
         yNum
@@ -51,6 +51,7 @@ function loop() {
 
         food.draw();
         snakeHead.draw();
+        snakeHead.collisionDetect();
         if(snakeHead.checkBounds()){
             snakeHead.updatePosition();
             loop();

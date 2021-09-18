@@ -6,10 +6,11 @@ class SnakeFood extends SnakeObject {
     };
 
     draw() {
-        ctx.beginPath();
-        ctx.fillStyle = this.color;
-        ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
-        ctx.fill();
+        if(this.exists){
+            ctx.beginPath();
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x, this.y,  this.size, this.size);
+        }
     };
     
 }

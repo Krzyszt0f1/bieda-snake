@@ -10,7 +10,7 @@ class SnakeHead extends SnakeObject {
 
     draw() {
         ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, 2 * this.size, 2 * this.size);
+        ctx.fillRect(this.x, this.y, this.size, this.size);
     };
 
     checkBounds() {
@@ -62,5 +62,13 @@ class SnakeHead extends SnakeObject {
                 _this.yVel = 20;
             }
         }
+    };
+
+    collisionDetect() {
+            if(food.exists) {
+                if (this.y === food.y && this.x === food.x) {
+                    food.exists = false;
+                }
+            }
     };
 }
