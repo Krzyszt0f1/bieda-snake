@@ -17,17 +17,25 @@ function random() {
     };
 }
 
-
-//trying to places a food piece on a map
-
-const foodPosition = random();
-const food = new SnakeFood(foodPosition.xNum, foodPosition.yNum, true);
-
 // define SnakeHead
 
 const snakeHead = new SnakeHead(160, 140, true);
 
 snakeHead.setControls();
+
+//initialises food
+
+function spanFood() {
+    let foodPosition = random();
+    while (foodPosition.xNum === snakeHead.x || foodPosition.yNum === snakeHead.y ) {
+        foodPosition = random();
+    }
+    return {x: foodPosition.xNum, y: foodPosition.yNum};
+}
+
+const foodPosition = spanFood();
+
+const food = new SnakeFood(foodPosition.x, foodPosition.y, true);
 
 // define loop that keeps drawing the scene constantly
 
@@ -48,6 +56,13 @@ function loop() {
 
 
         // set the SnakeHead in motion
+
+        if(!food.exists) {
+            console.log('eaten');
+            food.resurrectFood();
+            const newFoodPosition = spanFood();
+            food.resetPosition(newFoodPosition.x, newFoodPosition.y);
+        }
 
         food.draw();
         snakeHead.draw();
