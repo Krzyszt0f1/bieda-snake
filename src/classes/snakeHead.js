@@ -3,64 +3,63 @@ class SnakeHead extends SnakeObject {
     constructor(x, y, exists) {
         super(x, y, exists);
         this.color = '#4977ee';
-        this.vel = 2.5;
-        this.direction = 'right';
+        this.xVel = 20;
+        this.yVel = 0;
+        this.changingDirection = false;
     };
 
     draw() {
-        ctx.beginPath();
         ctx.fillStyle = this.color;
-        ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
-        ctx.fill();
+        ctx.fillRect(this.x, this.y, 2 * this.size, 2 * this.size);
     };
 
     checkBounds() {
-        if((this.x + this.size) > width) {
-            this.x = width - 2 * this.size;
+        if(this.x >= width) {
             return false;
-        }
-
-        if((this.x - this.size) < 0) {
-            this.x =  2 * this.size;
+        } else if (this.x < 0) {
             return false;
-        }
-
-        if((this.y + this.size) > height) {
-            this.y = height - 2 * this.size;
+        } else if (this.y >= height) {
             return false;
-        }
-
-        if((this.y - this.size) < 0) {
-            this.y = 2 * this.size;
+        } else if (this.y < 0) {
             return false;
         } else {
             return true;
         }
     };
     
+    setChangingDirection(bool) {
+        this.changingDirection = bool;
+    }
+    
     updatePosition() {
-        if (this.direction === 'left') {
-            this.x -= this.vel;
-        } else if (this.direction === 'right') {
-            this.x += this.vel;
-        } else if (this.direction === 'up') {
-            this.y -= this.vel;
-        } else if (this.direction === 'down') {
-            this.y += this.vel;
-        }
+        this.x +=this.xVel;
+        this.y +=this.yVel;
     };
     
     setControls() {
         let _this = this;
         window.onkeydown = function(e) {
-            if (e.key === 'a' && _this.direction !== 'right') {
-                _this.direction = 'left';
-            } else if (e.key === 'd' && _this.direction !== 'left') {
-                _this.direction = 'right';
-            } else if (e.key === 'w' && _this.direction !== 'down') {
-                _this.direction = 'up';
-            } else if (e.key === 's' && _this.direction !== 'up') {
-                _this.direction = 'down';
+            if (_this.changingDirection) return;
+            _this.changingDirection = true;
+            const goingUp = _this.yVel === -20;
+            const goingDown = _this.yVel === 20;
+            const goingRight = _this.xVel === 20;
+            const goingLeft = _this.xVel === -20;
+            if (e.key === 'ArrowLeft' && !goingRight) {
+                _this.xVel = -20;
+                _this.yVel = 0;
+            }
+            if (e.key === 'ArrowUp' && !goingDown) {
+                _this.xVel = 0;
+                _this.yVel = -20;
+            }
+            if (e.key === 'ArrowRight' && !goingLeft) {
+                _this.xVel = 20;
+                _this.yVel = 0;
+            }
+            if (e.key === 'ArrowDown' && !goingUp) {
+                _this.xVel = 0;
+                _this.yVel = 20;
             }
         }
     };

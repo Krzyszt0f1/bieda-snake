@@ -4,7 +4,7 @@ class SnakeObject {
         this.x = x;
         this.y = y;
         this.exists = exists;
-        this.size = 12.5;
+        this.size = 10;
     }
 
 }

@@ -3,14 +3,14 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
-const width = canvas.width = 425;
-const height = canvas.height = 375;
+const width = canvas.width = 340;
+const height = canvas.height = 300;
 
 // function to randomly generate food position on a map
 
 function random() {
-    const xNum =  Math.floor(Math.random() * 17) * 25 + 12.5;
-    const yNum =  Math.floor(Math.random() * 15) * 25 + 12.5;
+    const xNum =  Math.floor(Math.random() * 17) * 20 + 10;
+    const yNum =  Math.floor(Math.random() * 15) * 20 + 10;
     return {
         xNum,
         yNum
@@ -25,7 +25,7 @@ const food = new SnakeFood(foodPosition.xNum, foodPosition.yNum, true);
 
 // define SnakeHead
 
-const snakeHead = new SnakeHead(212.5, 187.5, true);
+const snakeHead = new SnakeHead(160, 140, true);
 
 snakeHead.setControls();
 
@@ -33,28 +33,29 @@ snakeHead.setControls();
 
 function loop() {
     // canvas checkered pattern
-
-    for (let i = 0; i < 15; i++) {
-        for (let j = 0; j < 17; j++) {
-            if((j % 2 === 0 && i % 2 === 0) || (j % 2 === 1 && i % 2 === 1)) {
-                ctx.fillStyle = '#aad751';
-            } else {
-                ctx.fillStyle = '#a2d149';
+    snakeHead.setChangingDirection(false);
+    setTimeout(function onTick() {
+        for (let i = 0; i < 15; i++) {
+            for (let j = 0; j < 17; j++) {
+                if((j % 2 === 0 && i % 2 === 0) || (j % 2 === 1 && i % 2 === 1)) {
+                    ctx.fillStyle = '#aad751';
+                } else {
+                    ctx.fillStyle = '#a2d149';
+                }
+                ctx.fillRect(j * 20, i * 20, 20, 20);
             }
-            ctx.fillRect(j * 25, i * 25, 25, 25);
         }
-    }
-    
 
-    // set the SnakeHead in motion
 
-    food.draw();
-    snakeHead.draw();
-    if(snakeHead.checkBounds()){
-        snakeHead.updatePosition();
+        // set the SnakeHead in motion
 
-        requestAnimationFrame(loop);
-    }
+        food.draw();
+        snakeHead.draw();
+        if(snakeHead.checkBounds()){
+            snakeHead.updatePosition();
+            loop();
+        }
+    }, 200)
 }
 
 loop();
