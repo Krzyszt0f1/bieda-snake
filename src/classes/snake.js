@@ -32,20 +32,6 @@ class Snake extends SnakeObject {
             ctx.strokeRect(piece.x, piece.y,  this.size, this.size);
         })
     };
-
-    checkBounds() {
-        if(this.x >= width) {
-            return false;
-        } else if (this.x < 0) {
-            return false;
-        } else if (this.y >= height) {
-            return false;
-        } else if (this.y < 0) {
-            return false;
-        } else {
-            return true;
-        }
-    };
     
     setChangingDirection(bool) {
         this.changingDirection = bool;
@@ -98,8 +84,32 @@ class Snake extends SnakeObject {
                 if (this.y === food.y && this.x === food.x) {
                     food.exists = false;
                     this.grow();
+                    console.log('The snake is ' + this.body.length + ' pieces long.');
                 }
             }
+    };
+    
+    selfCollisionDetect() {
+        const tail = this.body.slice(1);
+        tail.forEach((piece) => {
+            return this.y === piece.y && this.x === piece.x;
+        })
+    };
+
+    checkBounds() {
+        if (this.selfCollisionDetect()) {
+            return false;
+        }else if (this.x >= width) {
+            return false;
+        } else if (this.x < 0) {
+            return false;
+        } else if (this.y >= height) {
+            return false;
+        } else if (this.y < 0) {
+            return false;
+        } else {
+            return true;
+        }
     };
     
     grow() {

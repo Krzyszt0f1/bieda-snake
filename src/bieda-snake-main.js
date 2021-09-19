@@ -28,7 +28,7 @@ snake.setControls();
 function spanFood() {
     let foodPosition = random();
     while (foodPosition.xNum === snake.x || foodPosition.yNum === snake.y ) {
-        console.log('had to re-span the food');
+        console.log('had to re-span the food.');
         foodPosition = random();
     }
     return {x: foodPosition.xNum, y: foodPosition.yNum};
@@ -59,7 +59,7 @@ function loop() {
         // set the Snake in motion
 
         if(!food.exists) {
-            console.log('eaten');
+            console.log('eaten.');
             food.resurrectFood();
             const newFoodPosition = spanFood();
             food.resetPosition(newFoodPosition.x, newFoodPosition.y);
