@@ -91,15 +91,14 @@ class Snake extends SnakeObject {
     
     selfCollisionDetect() {
         const tail = this.body.slice(1);
-        tail.forEach((piece) => {
-            return this.y === piece.y && this.x === piece.x;
+        const isEatenArr = tail.map((piece) => {
+            return (this.y === piece.y && this.x === piece.x);
         })
+        return !isEatenArr.includes(true);
     };
 
     checkBounds() {
-        if (this.selfCollisionDetect()) {
-            return false;
-        }else if (this.x >= width) {
+        if (this.x >= width) {
             return false;
         } else if (this.x < 0) {
             return false;
