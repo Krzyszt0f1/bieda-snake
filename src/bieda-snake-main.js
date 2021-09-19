@@ -19,15 +19,16 @@ function random() {
 
 // define SnakeHead
 
-const snakeHead = new SnakeHead(160, 140, true);
+const snake = new Snake(true);
 
-snakeHead.setControls();
+snake.setControls();
 
 //initialises food
 
 function spanFood() {
     let foodPosition = random();
-    while (foodPosition.xNum === snakeHead.x || foodPosition.yNum === snakeHead.y ) {
+    while (foodPosition.xNum === snake.x || foodPosition.yNum === snake.y ) {
+        console.log('had to re-span the food');
         foodPosition = random();
     }
     return {x: foodPosition.xNum, y: foodPosition.yNum};
@@ -41,7 +42,7 @@ const food = new SnakeFood(foodPosition.x, foodPosition.y, true);
 
 function loop() {
     // canvas checkered pattern
-    snakeHead.setChangingDirection(false);
+    snake.setChangingDirection(false);
     setTimeout(function onTick() {
         for (let i = 0; i < 15; i++) {
             for (let j = 0; j < 17; j++) {
@@ -55,7 +56,7 @@ function loop() {
         }
 
 
-        // set the SnakeHead in motion
+        // set the Snake in motion
 
         if(!food.exists) {
             console.log('eaten');
@@ -65,13 +66,14 @@ function loop() {
         }
 
         food.draw();
-        snakeHead.draw();
-        snakeHead.collisionDetect();
-        if(snakeHead.checkBounds()){
-            snakeHead.updatePosition();
+        snake.draw();
+        snake.foodCollisionDetect();
+        if(snake.checkBounds()){
+            snake.updateHeadPosition();
+            snake.updateBodyPosition();
             loop();
         }
-    }, 200)
+    }, 150)
 }
 
 loop();

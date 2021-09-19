@@ -5,6 +5,7 @@ class SnakeObject {
         this.y = y;
         this.exists = exists;
         this.size = 20;
+        this.outlineColor = '#000000'
     }
 
 }

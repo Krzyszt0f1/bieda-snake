@@ -9,7 +9,9 @@ class SnakeFood extends SnakeObject {
         if(this.exists){
             ctx.beginPath();
             ctx.fillStyle = this.color;
+            ctx.strokestyle = this.outlineColor;
             ctx.fillRect(this.x, this.y,  this.size, this.size);
+            ctx.strokeRect(this.x, this.y,  this.size, this.size);
         }
     };
 

@@ -1,16 +1,36 @@
-class SnakeHead extends SnakeObject {
+class Snake extends SnakeObject {
 
-    constructor(x, y, exists) {
-        super(x, y, exists);
+    constructor(exists) {
+        super(exists);
+        this.x = 160;
+        this.y = 140;
         this.color = '#4977ee';
         this.xVel = 20;
         this.yVel = 0;
         this.changingDirection = false;
+        this.body = [
+            {
+                x: 160,
+                y: 140
+            },
+            {
+                x: 140,
+                y: 140
+            },
+            {
+                x: 120,
+                y: 140
+            }
+        ];
     };
 
     draw() {
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.size, this.size);
+        this.body.forEach( (piece) => {
+            ctx.fillStyle = this.color;
+            ctx.strokestyle = this.outlineColor;
+            ctx.fillRect(piece.x, piece.y, this.size, this.size);
+            ctx.strokeRect(piece.x, piece.y,  this.size, this.size);
+        })
     };
 
     checkBounds() {
@@ -31,10 +51,19 @@ class SnakeHead extends SnakeObject {
         this.changingDirection = bool;
     }
     
-    updatePosition() {
+    updateHeadPosition() {
         this.x +=this.xVel;
         this.y +=this.yVel;
     };
+    
+    updateBodyPosition() {
+        const updatedBodyPart = {
+            x: this.body[0].x +this.xVel,
+            y: this.body[0].y +this.yVel,
+        };
+        this.body.unshift(updatedBodyPart);
+        this.body.pop();
+    }
     
     setControls() {
         let _this = this;
@@ -64,11 +93,20 @@ class SnakeHead extends SnakeObject {
         }
     };
 
-    collisionDetect() {
+    foodCollisionDetect() {
             if(food.exists) {
                 if (this.y === food.y && this.x === food.x) {
                     food.exists = false;
+                    this.grow();
                 }
             }
     };
+    
+    grow() {
+        const newBodyPiece = {
+            x: this.body[this.body.length -1].x +this.xVel,
+            y: this.body[this.body.length -1].y +this.yVel,
+        }
+        this.body.push(newBodyPiece);
+    }
 }
