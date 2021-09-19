@@ -84,7 +84,6 @@ class Snake extends SnakeObject {
                 if (this.y === food.y && this.x === food.x) {
                     food.exists = false;
                     this.grow();
-                    console.log('The snake is ' + this.body.length + ' pieces long.');
                 }
             }
     };
