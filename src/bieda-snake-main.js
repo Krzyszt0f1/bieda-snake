@@ -23,12 +23,24 @@ const snake = new Snake(true);
 
 snake.setControls();
 
+// defines isFoodCollidingWithAnyBodyPieceArray
+
+function isFoodCollidingWithAnyBodyPieceArray(foodPositionObject) {
+    return snake.body.map( (piece) => {
+        return foodPositionObject.xNum === piece.x || foodPositionObject.yNum === piece.y
+    });
+}
+
 //initialises food
 
 function spanFood() {
     let foodPosition = random();
-    while (foodPosition.xNum === snake.x || foodPosition.yNum === snake.y ) {
+    let isFoodCollidingWithAnyBodyPiece = isFoodCollidingWithAnyBodyPieceArray(foodPosition);
+    console.log(isFoodCollidingWithAnyBodyPiece);
+    while (isFoodCollidingWithAnyBodyPiece.includes(true) ) {
+        console.log('had to re-render food');
         foodPosition = random();
+        isFoodCollidingWithAnyBodyPiece = isFoodCollidingWithAnyBodyPieceArray(foodPosition);
     }
     return {x: foodPosition.xNum, y: foodPosition.yNum};
 }
