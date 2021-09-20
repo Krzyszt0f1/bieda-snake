@@ -67,7 +67,6 @@ function loop() {
         snake.draw();
         snake.foodCollisionDetect();
         if(snake.checkBounds() && snake.selfCollisionDetect()){
-            snake.updateHeadPosition();
             snake.updateBodyPosition();
             loop();
         }

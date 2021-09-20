@@ -2,8 +2,6 @@ class Snake extends SnakeObject {
 
     constructor(exists) {
         super(exists);
-        this.x = 160;
-        this.y = 140;
         this.color = '#4977ee';
         this.xVel = 20;
         this.yVel = 0;
@@ -35,11 +33,6 @@ class Snake extends SnakeObject {
     
     setChangingDirection(bool) {
         this.changingDirection = bool;
-    }
-    
-    updateHeadPosition() {
-        this.x +=this.xVel;
-        this.y +=this.yVel;
     };
     
     updateBodyPosition() {
@@ -81,7 +74,7 @@ class Snake extends SnakeObject {
 
     foodCollisionDetect() {
             if(food.exists) {
-                if (this.y === food.y && this.x === food.x) {
+                if (this.body[0].y === food.y && this.body[0].x === food.x) {
                     food.exists = false;
                     this.grow();
                 }
@@ -91,19 +84,19 @@ class Snake extends SnakeObject {
     selfCollisionDetect() {
         const tail = this.body.slice(1);
         const isEatenArr = tail.map((piece) => {
-            return (this.y === piece.y && this.x === piece.x);
+            return (this.body[0].y === piece.y && this.body[0].x === piece.x);
         })
         return !isEatenArr.includes(true);
     };
 
     checkBounds() {
-        if (this.x >= width) {
+        if (this.body[0].x >= width) {
             return false;
-        } else if (this.x < 0) {
+        } else if (this.body[0].x < 0) {
             return false;
-        } else if (this.y >= height) {
+        } else if (this.body[0].y >= height) {
             return false;
-        } else if (this.y < 0) {
+        } else if (this.body[0].y < 0) {
             return false;
         } else {
             return true;
