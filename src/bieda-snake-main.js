@@ -6,43 +6,40 @@ const ctx = canvas.getContext('2d');
 const width = canvas.width = 340;
 const height = canvas.height = 300;
 
-// function to randomly generate food position on a map
-
-function random() {
-    const xNum =  Math.floor(Math.random() * 17) * 20;
-    const yNum =  Math.floor(Math.random() * 15) * 20;
-    return {
-        xNum,
-        yNum
-    };
-}
-
-// define SnakeHead
+// define Snake
 
 const snake = new Snake(true);
 
 snake.setControls();
 
-// defines isFoodCollidingWithAnyBodyPieceArray
+// initialise snake unoccupied spaces
 
-function isFoodCollidingWithAnyBodyPieceArray(foodPositionObject) {
-    return snake.body.map( (piece) => {
-        return foodPositionObject.xNum === piece.x || foodPositionObject.yNum === piece.y
-    });
+let freeSpaces = [];
+for (let i = 0; i < 15; i++) {
+    for (let j = 0; j < 17; j++) {
+        freeSpaces.push({x: j * 20, y: i * 20});
+    }
+}
+
+function updateFreeSpace() {
+    snake.body.forEach((piece) => {
+        freeSpaces = freeSpaces.filter( coordinate => !(coordinate.x === piece.x && coordinate.y === piece.y))
+    })
+}
+
+updateFreeSpace();
+
+// function to randomly generate food position on a map
+
+function randomFoodPosition() {
+    return freeSpaces[Math.floor(Math.random() * freeSpaces.length)];
 }
 
 //initialises food
 
 function spanFood() {
-    let foodPosition = random();
-    let isFoodCollidingWithAnyBodyPiece = isFoodCollidingWithAnyBodyPieceArray(foodPosition);
-    console.log(isFoodCollidingWithAnyBodyPiece);
-    while (isFoodCollidingWithAnyBodyPiece.includes(true) ) {
-        console.log('had to re-render food');
-        foodPosition = random();
-        isFoodCollidingWithAnyBodyPiece = isFoodCollidingWithAnyBodyPieceArray(foodPosition);
-    }
-    return {x: foodPosition.xNum, y: foodPosition.yNum};
+    updateFreeSpace();
+    return randomFoodPosition();
 }
 
 const foodPosition = spanFood();
