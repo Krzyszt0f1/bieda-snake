@@ -6,6 +6,16 @@ const ctx = canvas.getContext('2d');
 const width = canvas.width = 340;
 const height = canvas.height = 300;
 
+// score setup
+let foodScore = -1;
+function updateScore() {
+    foodScore++;
+    const score = document.querySelector('#score');
+    score.textContent= '🍎 : ' + foodScore;
+}
+
+updateScore();
+
 // define Snake
 
 const snake = new Snake(true);
@@ -67,6 +77,7 @@ function loop() {
         // set the Snake in motion
 
         if(!food.exists) {
+            updateScore();
             food.resurrectFood();
             const newFoodPosition = spanFood();
             food.resetPosition(newFoodPosition.x, newFoodPosition.y);

@@ -5,3 +5,15 @@ canvas {
     border-width: 20px;
     border-color: #578a34;
 }
+div {
+    display: block;
+    margin: 0 auto;
+    width: 380px;
+    background-color: #4a752c;
+}
+h2 {
+    display: inline-block;
+    margin: 0 auto;
+    padding-left: 20px;
+    color: #ffffff;
+}
