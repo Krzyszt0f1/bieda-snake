@@ -16,6 +16,12 @@ function updateScore() {
 
 updateScore();
 
+// high score setup
+
+let highScore = loadHighScore();
+const score = document.querySelector('#high-score');
+score.textContent= '🏆 : ' + (highScore !== undefined ? highScore : '0');
+
 // define Snake
 
 const snake = new Snake(true);
@@ -94,6 +100,8 @@ function loop() {
 }
 
 loop();
+
+saveHighScore(foodScore);
 
 // script re-run 
 
