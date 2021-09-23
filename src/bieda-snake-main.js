@@ -94,3 +94,9 @@ function loop() {
 }
 
 loop();
+
+// script re-run 
+
+function reRun() {
+    window.location.reload();
+}
