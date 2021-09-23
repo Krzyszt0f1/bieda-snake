@@ -6,10 +6,11 @@ canvas {
     border-color: #578a34;
 }
 div {
-    display: block;
+    display: flow-root;
     margin: 0 auto;
     width: 380px;
     background-color: #4a752c;
+    font-family: monospace;
 }
 h2 {
     display: inline-block;
@@ -22,6 +23,6 @@ button {
     color: #ffffff;
     border: none;
     float: right;
-    padding-top: 10px;
+    padding-top: 4px;
     padding-right: 10px;
 }

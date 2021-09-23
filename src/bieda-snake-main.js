@@ -6,12 +6,24 @@ const ctx = canvas.getContext('2d');
 const width = canvas.width = 340;
 const height = canvas.height = 300;
 
+// score formatting function
+
+function formatScore(score) {
+    if (score < 10) {
+        return `00${score}`;
+    } else if (score >= 10 && score < 100) {
+        return `0${score}`;
+    } else {
+        return `${score}`;
+    }
+}
+
 // score setup
 let foodScore = -1;
 function updateScore() {
     foodScore++;
     const score = document.querySelector('#score');
-    score.textContent= '🍎 : ' + foodScore;
+    score.textContent= '🍎 : ' + formatScore(foodScore);
 }
 
 updateScore();
@@ -24,7 +36,7 @@ let isRunning = true;
 
 let highScore = loadHighScore();
 const score = document.querySelector('#high-score');
-score.textContent= '🏆 : ' + (highScore !== undefined ? highScore : '0');
+score.textContent= '🏆 : ' + (highScore !== undefined ? formatScore(highScore) : formatScore(0));
 
 // define Snake
 
