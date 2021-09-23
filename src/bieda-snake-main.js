@@ -16,6 +16,10 @@ function updateScore() {
 
 updateScore();
 
+// setup boolean to restart the game
+
+let isRunning = true;
+
 // high score setup
 
 let highScore = loadHighScore();
@@ -97,6 +101,7 @@ function loop() {
             loop();
         } else {
             saveHighScore(foodScore);
+            isRunning = false;
         }
     }, 150)
 }
@@ -106,5 +111,8 @@ loop();
 // script re-run 
 
 function reRun() {
-    window.location.reload();
+    if (!isRunning) {
+        window.location.reload();
+        isRunning = true;
+    }
 }
