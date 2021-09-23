@@ -6,12 +6,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div>
-    <h2 id='score'></h2>
-    <h2 id='high-score'></h2>
-    <button type='button' onclick={reRun()}>➡️ Restart</button>
+<div class='elements'>
+    <div>
+        <h2 id='score'></h2>
+        <h2 id='high-score'></h2>
+        <button type='button' onclick={reRun()}>➡️ Restart</button>
+    </div>
+    <canvas></canvas>
 </div>
-<canvas></canvas>
 <script src="classes/snakeObject.js"></script>
 <script src="classes/snakeFood.js"></script>
 <script src="classes/snake.js"></script>

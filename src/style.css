@@ -26,3 +26,12 @@ button {
     padding-top: 4px;
     padding-right: 10px;
 }
+body {
+    background-image: url('nokiaImage.jpg');
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position-x: center;
+}
+.elements {
+    margin-top: 40px;
+}
