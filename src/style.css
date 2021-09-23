@@ -29,9 +29,9 @@ button {
 body {
     background-image: url('nokiaImage.jpg');
     background-repeat: no-repeat;
-    background-size: 42% 160%;
+    background-size: 767px 700px;
     background-position-x: center;
-    background-position-y: 9%;
+    background-position-y: 12%;
 }
 .elements {
     margin-top: 50px;
