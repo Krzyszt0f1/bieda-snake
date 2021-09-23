@@ -87,9 +87,9 @@ function loop() {
         for (let i = 0; i < 15; i++) {
             for (let j = 0; j < 17; j++) {
                 if((j % 2 === 0 && i % 2 === 0) || (j % 2 === 1 && i % 2 === 1)) {
-                    ctx.fillStyle = '#aad751';
+                    ctx.fillStyle = '#7fba8e';
                 } else {
-                    ctx.fillStyle = '#a2d149';
+                    ctx.fillStyle = '#87be96';
                 }
                 ctx.fillRect(j * 20, i * 20, 20, 20);
             }

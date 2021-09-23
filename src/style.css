@@ -3,13 +3,13 @@ canvas {
     margin: 0 auto;
     border-style: solid;
     border-width: 20px;
-    border-color: #578a34;
+    border-color: #586e5c;
 }
 div {
     display: flow-root;
     margin: 0 auto;
     width: 380px;
-    background-color: #4a752c;
+    background-color: #87be96;
     font-family: monospace;
 }
 h2 {
@@ -19,7 +19,7 @@ h2 {
     color: #ffffff;
 }
 button {
-    background-color: #4a752c;
+    background-color: #87be96;
     color: #ffffff;
     border: none;
     float: right;
@@ -29,9 +29,10 @@ button {
 body {
     background-image: url('nokiaImage.jpg');
     background-repeat: no-repeat;
-    background-size: 50%;
+    background-size: 42% 160%;
     background-position-x: center;
+    background-position-y: 9%;
 }
 .elements {
-    margin-top: 40px;
+    margin-top: 50px;
 }
