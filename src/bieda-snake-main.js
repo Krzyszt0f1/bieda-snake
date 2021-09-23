@@ -19,7 +19,6 @@ updateScore();
 // high score setup
 
 let highScore = loadHighScore();
-console.log(highScore);
 const score = document.querySelector('#high-score');
 score.textContent= '🏆 : ' + (highScore !== undefined ? highScore : '0');
 
@@ -96,13 +95,13 @@ function loop() {
         if(snake.checkBounds() && snake.selfCollisionDetect()){
             snake.updateBodyPosition();
             loop();
+        } else {
+            saveHighScore(foodScore);
         }
     }, 150)
 }
 
 loop();
-
-saveHighScore(foodScore);
 
 // script re-run 
 

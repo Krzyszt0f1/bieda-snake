@@ -12,11 +12,14 @@ const loadHighScore = () => {
 }
 
 const saveHighScore = (score) => {
-    try {
-        const serializedHighScore = JSON.stringify(score)
-        window.sessionStorage.setItem('highScore', serializedHighScore)
-    } catch (err) {
-        console.error(err)
-        return undefined
+    const currentHighScore = loadHighScore()
+    if (currentHighScore < score || currentHighScore === undefined){
+        try {
+            const serializedHighScore = JSON.stringify(score)
+            window.sessionStorage.setItem('highScore', serializedHighScore)
+        } catch (err) {
+            console.error(err)
+            return undefined
+        }
     }
 }
