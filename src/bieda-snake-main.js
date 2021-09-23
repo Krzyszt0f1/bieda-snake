@@ -19,6 +19,7 @@ updateScore();
 // high score setup
 
 let highScore = loadHighScore();
+console.log(highScore);
 const score = document.querySelector('#high-score');
 score.textContent= '🏆 : ' + (highScore !== undefined ? highScore : '0');
 
