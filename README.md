@@ -10,3 +10,9 @@ It was created as a mini project during my September 2021 holiday. This little h
 As it is only a `hack` project, any sort fo testing was omitted. 
 
 ![Snake-gif](https://media.giphy.com/media/zPdwt79PXjMEo/giphy.gif)
+
+### Running locally
+To run the page locally: 
+- Clone this `repo` and save it on your machine,
+- Open the `bieda-snake.html` file in your browser of choice,
+- Enjoy the clunky, old-school snake game experience!
